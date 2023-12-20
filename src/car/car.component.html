@@ -1,0 +1,19 @@
+<h1>My Car Component Hello Mino</h1>
+<nz-table #basicTable [nzData]="cars">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Plate Id</th>
+        <th>Status</th>
+        <th>Image Url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of cars">
+        <td>{{ data.brand }}</td>
+        <td>{{ data.plateId }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.imageUrl }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
