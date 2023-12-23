@@ -1,0 +1,8 @@
+<div *ngIf="!isRegister; else other_condition">
+    <app-login></app-login>
+    <a (click)="flipRegister()">Or register now!</a>
+</div>
+<ng-template #other_condition>
+    <app-register></app-register>
+    <a (click)="flipRegister()"> Or login now!</a>
+</ng-template>
