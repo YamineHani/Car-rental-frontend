@@ -1,11 +1,19 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
-            <input nz-input formControlName="userName" placeholder="async validate try to write JasonWood" />
+        <nz-form-label [nzSpan]="7" nzRequired>First Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="firstName" placeholder="Enter first name" />
             <ng-template #userErrorTpl let-control>
-                <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
-                <ng-container *ngIf="control.hasError('duplicated')">The username is redundant!</ng-container>
+                <ng-container *ngIf="control.hasError('required')">Please input your first name!</ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Last Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="lastName" placeholder="Enter last name" />
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Please input your last name!</ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
