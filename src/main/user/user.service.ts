@@ -28,6 +28,6 @@ export class UserService {
     public getUser(): UserModel {
         let user: any = sessionStorage.getItem("user");
         if (!user) user = "";
-        return JSON.parse(user) as UserModel;
+        return (JSON.parse(user) as UserModel);
     }
 }

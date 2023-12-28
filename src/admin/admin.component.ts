@@ -2,6 +2,10 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
+import { NzDescriptionsItemComponent } from 'ng-zorro-antd/descriptions';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { CarService } from "../car/car.service";
 import { Car } from "../car/car.model";
 import { CarComponent } from "../car/car.component";
@@ -13,19 +17,22 @@ import { UserModel } from "../main/user/user.model";
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NzGridModule, CarComponent],
+  imports: [CommonModule, RouterOutlet, NzGridModule, CarComponent, NzPageHeaderModule, 
+    NzDescriptionsItemComponent, NzSpaceComponent, NzButtonComponent, NzSpaceItemDirective],
   providers: [CarService, UserService]
 })
 export class AdminComponent {
 
   carRows: Car[][] = [];
   user: UserModel;
+  subtitle: string;
 
   constructor(private carService: CarService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
     console.log(this.user);
+    this.subtitle = this.user.firstName + " " + this.user.lastName;
     this.carService.getCars().pipe().subscribe({
       next: (response: Car[]) => this.buildCarRows(response),
       error: (error) => console.log(error.error)

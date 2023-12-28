@@ -1,6 +1,15 @@
-<ng-container *ngIf="user !== undefined">
-    <h1>{{user.firstName + " " + user.lastName}}</h1>
-</ng-container>
+<nz-page-header class="site-page-header">
+    <nz-page-header-title>Car Rental Admin</nz-page-header-title>
+    <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
+    <nz-page-header-extra>
+        <nz-space>
+            <button *nzSpaceItem nz-button>Add Car</button>
+            <button *nzSpaceItem nz-button>Add Office</button>
+        </nz-space>
+    </nz-page-header-extra>
+    <nz-page-header-content>
+    </nz-page-header-content>
+</nz-page-header>
 <div class="gutter-example">
     <ng-container *ngFor="let row of carRows">
         <div nz-row [nzGutter]="[16, 16]">
