@@ -1,6 +1,14 @@
-export interface Car{
+export interface Car {
     plateId: number;
-    imageUrl: string;
     brand: string;
+    type: string;
+    year: number;
     status: string;
+    rate: number;
+    transmissionType: string;
+    fuelType: string;
+    bodyStyle: string;
+    color: string;
+    capacity: number;
+    imageUrl: string;
 }

@@ -1,35 +1,31 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { CarService } from "./car.service";
 import { Car } from "./car.model";
-import { HttpErrorResponse } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
-import {NzTableModule} from 'ng-zorro-antd/table'
+import { NzCardComponent, NzCardMetaComponent } from 'ng-zorro-antd/card'
+import { NzAvatarComponent } from 'ng-zorro-antd/avatar'
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
 
 @Component({
-    selector: 'app-car',
-    templateUrl: './car.component.html',
-    styleUrl: './car.component.css',
-    standalone: true,
-    imports: [CommonModule, NzTableModule],
-    providers: [CarService]
+  selector: 'app-car',
+  templateUrl: './car.component.html',
+  styleUrl: './car.component.css',
+  standalone: true,
+  imports: [CommonModule, NzCardComponent, NzAvatarComponent, NzCardMetaComponent,
+    NzIconModule, NzDescriptionsModule],
+  providers: [CarService]
 })
 export class CarComponent {
-    public cars: Car[] = []; //idk
+  
+  @Input({ required: true }) car: Car;
+  description: string = "";
+  
 
-  constructor(private carService: CarService){}
-
-  ngOnInit(): void {
-      this.getCars();
+  constructor() { 
   }
 
-  public getCars():void{
-    this.carService.getCars().subscribe(
-      (response: Car[]) => {
-        this.cars = response
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message)
-      }
-    );
+  ngOnInit(): void {
+    this.description = this.car.rate + "$ per day";
   }
 }

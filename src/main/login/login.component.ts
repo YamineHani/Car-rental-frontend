@@ -5,10 +5,9 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { LoginRequest } from "./login-request.model";
 import { UserService } from "../user/user.service";
-import { response } from "express";
-import { error } from "console";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { UserModel } from "../user/user.model";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -28,7 +27,7 @@ export class LoginComponent {
     });
 
     constructor(private fb: NonNullableFormBuilder, private userService: UserService,
-        private modal: NzModalService) { }
+        private modal: NzModalService, private router: Router) { }
 
     ngOnInit(): void { }
 
@@ -40,7 +39,7 @@ export class LoginComponent {
         this.userService.login(loginRequest).pipe().subscribe({
             next: (response: UserModel) => {
                 this.userService.setUser(response);
-                console.log(this.userService.getUser());
+                this.router.navigateByUrl('/admin');
             },
             error: (error) => this.error(error.error)
         });
