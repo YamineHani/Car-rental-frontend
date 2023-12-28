@@ -4,9 +4,9 @@ import { RouterOutlet } from "@angular/router";
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { CarService } from "../car/car.service";
 import { Car } from "../car/car.model";
-import { response } from "express";
-import { error } from "console";
 import { CarComponent } from "../car/car.component";
+import { UserService } from "../main/user/user.service";
+import { UserModel } from "../main/user/user.model";
 
 @Component({
   selector: 'app-admin',
@@ -14,33 +14,34 @@ import { CarComponent } from "../car/car.component";
   styleUrl: './admin.component.css',
   standalone: true,
   imports: [CommonModule, RouterOutlet, NzGridModule, CarComponent],
-  providers: [CarService]
+  providers: [CarService, UserService]
 })
 export class AdminComponent {
 
   carRows: Car[][] = [];
+  user: UserModel;
 
-  constructor(private carService: CarService) {
-  }
+  constructor(private carService: CarService, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
+    console.log(this.user);
     this.carService.getCars().pipe().subscribe({
-      next: (response: Car[]) => {
-        console.log(response);
-        for (let i = 0; i < response.length; i++) {
-          const temp = [];
-          const start = i;
-          while (i < response.length && (i == start || i % 4 != 0)) {
-            temp.push(response[i]);
-            i++;
-          }
-          this.carRows.push(temp);
-          if (temp.length == 4) i--;
-        };
-      },
+      next: (response: Car[]) => this.buildCarRows(response),
       error: (error) => console.log(error.error)
     });
   }
 
-
+  private buildCarRows(response: Car[]) {
+    for (let i = 0; i < response.length; i++) {
+      const temp = [];
+      const start = i;
+      while (i < response.length && (i == start || i % 4 != 0)) {
+        temp.push(response[i]);
+        i++;
+      }
+      this.carRows.push(temp);
+      if (temp.length == 4) i--;
+    };
+  }
 }
