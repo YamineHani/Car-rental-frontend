@@ -19,7 +19,7 @@ import { Car } from "../car.model";
 @Component({
     selector: 'app-carAdd',
     templateUrl: './car-add.component.html',
-    styleUrl: './car-add.component.css',
+    styleUrls: ['./car-add.component.css'],
     standalone: true,
     imports: [CommonModule, NzFormModule, NzButtonModule,
         ReactiveFormsModule, NzInputModule],

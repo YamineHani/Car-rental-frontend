@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
-import { Car } from './car.model';
-import { environment } from '../enviroment/enviroment';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../enviroment/enviroment";
+import { Observable } from "rxjs";
+import { Car } from "./car.model";
 
 
 @Injectable({
@@ -17,8 +17,8 @@ export class CarService {
     return this.http.get<Car[]>(`${this.apiServerUrl}car/all`);
   }
 
-  public addCar(car: Car): Observable<any>{ //I changed observable
-    return this.http.post(`${this.apiServerUrl}car/add`,car);
+  public addCar(car: Car): Observable<string>{ //I changed observable
+    return this.http.post(`${this.apiServerUrl}car/add`,car, {responseType: 'text'});
   }
 
   public updateCar(car: Car): Observable<Car[]>{
