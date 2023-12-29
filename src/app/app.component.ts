@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MainComponent } from '../main/main.component';
 import { CarComponent } from '../car/car.component';
-import { Car } from '../car/car.model';
 import { CarDetailsComponent } from '../car/car-details/car-details.component';
 import { AppRoutingModule } from './app.routes';
 

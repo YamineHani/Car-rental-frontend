@@ -1,14 +1,13 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import {
-  AbstractControl, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators
+import { FormControl, FormGroup, NonNullableFormBuilder, 
+  ReactiveFormsModule, Validators
 } from '@angular/forms';
-import { NzFormControlComponent, NzFormModule, NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { NzFormControlComponent, NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Router } from "@angular/router";
-import { ChangeDetectorRef } from '@angular/core';
 import { Car } from "../car.model";
 import { CarService } from "../car.service";
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -40,8 +39,8 @@ export class CarCreateComponent {
     officeId: FormControl<string>;
   }>;
 
-  constructor(private fb: NonNullableFormBuilder, private route: Router,
-    private cdr: ChangeDetectorRef, private carService: CarService, private modal: NzModalService) {
+  constructor(private fb: NonNullableFormBuilder, private route: Router
+    , private carService: CarService, private modal: NzModalService) {
     this.validateForm = this.fb.group({
       plateId: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       brand: ['', [Validators.required]],
@@ -105,13 +104,11 @@ export class CarCreateComponent {
   }
 
   ngOnInit(): void {
-
+    console.log('Form Status:', this.validateForm.status);
+    console.log('Form Value:', this.validateForm.value);
   }
 
   showDetails(): void {
   }
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
 }

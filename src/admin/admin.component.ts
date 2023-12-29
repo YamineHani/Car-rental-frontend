@@ -34,7 +34,14 @@ export class AdminComponent {
     this.user = this.userService.getUser();
     this.subtitle = this.user.firstName + " " + this.user.lastName;
     this.carService.getCars().pipe().subscribe({
-      next: (response: Car[]) => this.buildCarRows(response),
+      next: (response: Car[] | null) => {
+        if (response) {
+          this.buildCarRows(response);
+        } else {
+          // Handle the case when the response is null or undefined
+          console.log("Cars response is null or undefined");
+        }
+      },
       error: (error) => console.log(error.error)
     });
   }
@@ -53,11 +60,12 @@ export class AdminComponent {
   }
 
   addCar(): void{
-    this.router.navigateByUrl('/addCar');
+    this.router.navigateByUrl('addCar');
   }
 
   addOffice(): void{ 
     // TODO ADD OFFICE 
+    this.router.navigateByUrl('addOffice');
   }
 
 }

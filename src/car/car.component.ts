@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
-  styleUrl: './car.component.css',
+  styleUrls: ['./car.component.css'],
   standalone: true,
   imports: [CommonModule, NzCardComponent, NzAvatarComponent, NzCardMetaComponent,
     NzIconModule, NzDescriptionsModule],
@@ -31,6 +31,6 @@ export class CarComponent {
   }
 
   showDetails(): void{
-    this.router.navigateByUrl('/details', {state:{car: this.car}});
+    this.router.navigateByUrl('details', {state:{car: this.car}});
   }
 }
