@@ -3,7 +3,7 @@
   <nz-card-meta [nzTitle]="car.brand" [nzDescription]="description" [nzAvatar]="avatarTemplate"></nz-card-meta>
 </nz-card>
 <ng-template #avatarTemplate>
-  <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+  <nz-avatar nzSrc="./assets/logo1.png"></nz-avatar>
 </ng-template>
 <ng-template #coverTemplate>
   <img alt="example" [src]="car.imageUrl" />
@@ -15,5 +15,5 @@
   <span nz-icon nzType="edit"></span>
 </ng-template>
 <ng-template #actionEllipsis>
-  <span nz-icon nzType="ellipsis"></span>
+  <span nz-icon nzType="ellipsis" (click)="showDetails()"></span>
 </ng-template>

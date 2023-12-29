@@ -16,18 +16,18 @@ import { AppRoutingModule } from './app.routes';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  cars: Car[] = [{
-    brand: "Mercedes Benz",
-    bodyStyle: "sport",
-    capacity: 4,
-    color: "blue",
-    fuelType: "95",
-    imageUrl: "https://www.hdwallpapers.in/download/mercedes_benz_sls_amg_hd-wide.jpg",
-    plateId: 2222,
-    rate: 70,
-    status: "available",
-    transmissionType: "type",
-    type: "free",
-    year: 2022
-  }];
+  // cars: Car[] = [{
+  //   brand: "Mercedes Benz",
+  //   bodyStyle: "sport",
+  //   capacity: 4,
+  //   color: "blue",
+  //   fuelType: "95",
+  //   imageUrl: "https://www.hdwallpapers.in/download/mercedes_benz_sls_amg_hd-wide.jpg",
+  //   plateId: 2222,
+  //   rate: 70,
+  //   status: "available",
+  //   transmissionType: "type",
+  //   type: "free",
+  //   year: 2022
+  // }];
 }

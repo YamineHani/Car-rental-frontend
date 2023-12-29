@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { Car } from '../../car/car.model';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions'
 import { NzBadgeModule } from 'ng-zorro-antd/badge'
+import {  Router } from "@angular/router";
 
 @Component({
     selector: 'app-car-details',
@@ -13,24 +14,12 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge'
     providers: []
 })
 export class CarDetailsComponent {
-    car: Car = {
-        brand: "Mercedes Benz",
-        bodyStyle: "sport",
-        capacity: 4,
-        color: "blue",
-        fuelType: "95",
-        imageUrl: "https://www.hdwallpapers.in/download/mercedes_benz_sls_amg_hd-wide.jpg",
-        plateId: 2222,
-        rate: 70,
-        status: "available",
-        transmissionType: "type",
-        type: "free",
-        year: 2022
-    };
+    car: Car;
 
-    constructor() {
+    constructor(private route: Router) {
     }
 
     ngOnInit(): void {
+        this.car = history.state.car;
     }
 }

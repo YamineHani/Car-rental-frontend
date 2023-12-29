@@ -11,4 +11,5 @@ export interface Car {
     color: string;
     capacity: number;
     imageUrl: string;
+    office: { officeId: number };
 }

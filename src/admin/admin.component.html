@@ -3,8 +3,8 @@
     <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
     <nz-page-header-extra>
         <nz-space>
-            <button *nzSpaceItem nz-button>Add Car</button>
-            <button *nzSpaceItem nz-button>Add Office</button>
+            <button (click) = "addCar()" *nzSpaceItem nz-button>Add Car</button>
+            <button (click) = "addOffice()" *nzSpaceItem nz-button>Add Office</button>
         </nz-space>
     </nz-page-header-extra>
     <nz-page-header-content>

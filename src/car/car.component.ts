@@ -6,6 +6,7 @@ import { NzCardComponent, NzCardMetaComponent } from 'ng-zorro-antd/card'
 import { NzAvatarComponent } from 'ng-zorro-antd/avatar'
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-car',
@@ -22,10 +23,14 @@ export class CarComponent {
   description: string = "";
   
 
-  constructor() { 
+  constructor(private router: Router) { 
   }
 
   ngOnInit(): void {
     this.description = this.car.rate + "$ per day";
+  }
+
+  showDetails(): void{
+    this.router.navigateByUrl('/details', {state:{car: this.car}});
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet } from "@angular/router";
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceComponent, NzSpaceItemDirective } from 'ng-zorro-antd/space';
@@ -27,11 +27,11 @@ export class AdminComponent {
   user: UserModel;
   subtitle: string;
 
-  constructor(private carService: CarService, private userService: UserService) {}
+  constructor(private carService: CarService, private userService: UserService
+    ,private router: Router) {}
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-    console.log(this.user);
     this.subtitle = this.user.firstName + " " + this.user.lastName;
     this.carService.getCars().pipe().subscribe({
       next: (response: Car[]) => this.buildCarRows(response),
@@ -51,4 +51,13 @@ export class AdminComponent {
       if (temp.length == 4) i--;
     };
   }
+
+  addCar(): void{
+    this.router.navigateByUrl('/addCar');
+  }
+
+  addOffice(): void{ 
+    // TODO ADD OFFICE 
+  }
+
 }
