@@ -33,4 +33,8 @@ export class CarComponent {
   showDetails(): void{
     this.router.navigateByUrl('details', {state:{car: this.car}});
   }
+
+  updateDetails(): void{
+    //
+  }
 }

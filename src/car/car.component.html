@@ -12,7 +12,7 @@
   <span nz-icon nzType="plus"></span>
 </ng-template>
 <ng-template #actionEdit>
-  <span nz-icon nzType="edit"></span>
+  <span nz-icon nzType="edit" (click)="updateDetails()"></span>
 </ng-template>
 <ng-template #actionEllipsis>
   <span nz-icon nzType="ellipsis" (click)="showDetails()"></span>

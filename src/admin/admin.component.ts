@@ -24,7 +24,7 @@ import { UserModel } from "../main/user/user.model";
 export class AdminComponent {
 
   carRows: Car[][] = [];
-  user: UserModel;
+  user: UserModel | null;
   subtitle: string;
 
   constructor(private carService: CarService, private userService: UserService
@@ -32,6 +32,7 @@ export class AdminComponent {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
+    if(this.user != null)
     this.subtitle = this.user.firstName + " " + this.user.lastName;
     this.carService.getCars().pipe().subscribe({
       next: (response: Car[] | null) => {

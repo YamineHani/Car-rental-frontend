@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { UserModel } from "./user.model";
 import { Observable } from "rxjs";
 import { LoginRequest } from "../login/login-request.model";
 import { environment } from "../../enviroment/enviroment";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,11 @@ import { environment } from "../../enviroment/enviroment";
 export class UserService {
     private apiServerUrl = environment.apiBaseUrl + "user";
 
-    constructor(private http: HttpClient) { }
+    isBrowser: boolean;
+
+    constructor(private http: HttpClient, @Inject(PLATFORM_ID) platformId: Object) {
+        this.isBrowser = isPlatformBrowser(platformId);
+     }
 
     public signup(userModel: UserModel): Observable<string> {
         return this.http.post(`${this.apiServerUrl}/signup`, userModel, {responseType: 'text'});
@@ -22,16 +27,21 @@ export class UserService {
     }
 
     public setUser(user: UserModel) {
-        sessionStorage.setItem("user", JSON.stringify(user));
+        if(this.isBrowser){
+            sessionStorage.setItem("user", JSON.stringify(user));
+        } 
     }
 
-    public getUser(): UserModel {
-        let response: any = sessionStorage.getItem("user");
-        if (!response) response = "";
-        let user: UserModel = JSON.parse(response);
-        if (typeof user === 'string') {
+    public getUser(): UserModel | null {
+        if(this.isBrowser){
+            let response: any = sessionStorage.getItem("user");
+            if (!response) response = "";
+            let user: UserModel = JSON.parse(response);
+            if (typeof user === 'string') {
             user = JSON.parse(user);
+              }
+            return user;
         }
-        return user;
+        return null;   
     }
 }
