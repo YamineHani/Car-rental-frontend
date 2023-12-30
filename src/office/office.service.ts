@@ -16,4 +16,7 @@ export class OfficeService {
         return this.http.post(`${this.apiServerUrl}/add`, officeModel, {responseType: 'text'});
     }
 
+    public getAllOfficeIds(): Observable<number[]>{
+        return this.http.get<number[]>(`${this.apiServerUrl}/find/All/OfficesId`);
+    }
 }

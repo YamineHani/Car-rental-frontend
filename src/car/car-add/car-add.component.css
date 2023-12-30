@@ -1,0 +1,11 @@
+.year-menu {
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
+
+.year-menu-container {
+    max-height: 200px;
+    /* Set the maximum height as needed */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+}
