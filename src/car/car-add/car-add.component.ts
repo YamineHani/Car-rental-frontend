@@ -141,4 +141,16 @@ export class CarAddComponent {
     selectOffice(officeId: string): void{
         this.validateForm.get('officeId')?.setValue(officeId);
     }
+
+    setTransmissionType(transmissionType: string): void{
+        this.validateForm.get('transmissionType')?.setValue(transmissionType);
+    }
+
+    setFuelType(fuelType: string): void{
+        this.validateForm.get('fuelType')?.setValue(fuelType);
+    }
+
+    setBodyStyle(bodyStyle: string): void{
+        this.validateForm.get('bodyStyle')?.setValue(bodyStyle);
+    }
 }

@@ -78,7 +78,18 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Transmission type</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="transTypeError">
-            <input nz-input formControlName="transmissionType" placeholder="Enter transmission type" />
+            <!-- <input nz-input formControlName="transmissionType" placeholder="Enter transmission type" /> -->
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuTransmissionType">
+                {{ validateForm.get('transmissionType')?.value ? validateForm.get('transmissionType')?.value : 'Choose transmission type' }} <i nz-icon nzType="down"></i>
+                <span nz-icon nzType="down"></span>
+            </a>
+            <nz-dropdown-menu #menuTransmissionType="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="setTransmissionType('MANUAL')">Manual</li>
+                    <li nz-menu-item (click)="setTransmissionType('AUTOMATIC')">Automatic</li>
+                    <li nz-menu-item (click)="setTransmissionType('SEMI_AUTOMATIC')">Semi-automatic</li>
+                </ul>
+            </nz-dropdown-menu>
             <ng-template #transTypeError let-control>
                 <ng-container *ngIf="control.hasError('required')">Please input transmission type!</ng-container>
             </ng-template>
@@ -87,7 +98,20 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Fuel type</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="fuelTypeError">
-            <input nz-input formControlName="fuelType" placeholder="Enter fuel type" />
+            <!-- <input nz-input formControlName="fuelType" placeholder="Enter fuel type" /> -->
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuFuelType">
+                {{ validateForm.get('fuelType')?.value ? validateForm.get('fuelType')?.value : 'Choose fuel type' }} <i nz-icon nzType="down"></i>
+                <span nz-icon nzType="down"></span>
+            </a>
+            <nz-dropdown-menu #menuFuelType="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="setFuelType('GASOLINE')">Gasoline</li>
+                    <li nz-menu-item (click)="setFuelType('DIESEL')">Diesel</li>
+                    <li nz-menu-item (click)="setFuelType('ELECTRIC')">Electric</li>
+                    <li nz-menu-item (click)="setFuelType('HYBRID')">Hybrid</li>
+                    <li nz-menu-item (click)="setFuelType('CNG')">CNG</li>
+                </ul>
+            </nz-dropdown-menu>
             <ng-template #fuelTypeError let-control>
                 <ng-container *ngIf="control.hasError('required')">Please input fuel type!</ng-container>
             </ng-template>
@@ -96,7 +120,23 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Body style</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="bodyStyleError">
-            <input nz-input formControlName="bodyStyle" placeholder="Enter body style" />
+            <!-- <input nz-input formControlName="bodyStyle" placeholder="Enter body style" /> -->
+            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuBodyStyle">
+                {{ validateForm.get('bodyStyle')?.value ? validateForm.get('bodyStyle')?.value : 'Choose body style' }} <i nz-icon nzType="down"></i>
+                <span nz-icon nzType="down"></span>
+            </a>
+            <nz-dropdown-menu #menuBodyStyle="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                    <li nz-menu-item (click)="setBodyStyle('SEDAN')">Sedan</li>
+                    <li nz-menu-item (click)="setBodyStyle('SUV')">SUV</li>
+                    <li nz-menu-item (click)="setBodyStyle('HATCHBACK')">Hatchback</li>
+                    <li nz-menu-item (click)="setBodyStyle('COUPE')">Coupe</li>
+                    <li nz-menu-item (click)="setBodyStyle('CONVERTIBLE')">Convertible</li>
+                    <li nz-menu-item (click)="setBodyStyle('WAGON')">Wagon</li>
+                    <li nz-menu-item (click)="setBodyStyle('VAN')">Van</li>
+                    <li nz-menu-item (click)="setBodyStyle('TRUCK')">Truck</li>
+                </ul>
+            </nz-dropdown-menu>
             <ng-template #bodyStyleError let-control>
                 <ng-container *ngIf="control.hasError('required')">Please input body style!</ng-container>
             </ng-template>
