@@ -26,7 +26,11 @@ export const routes: Routes = [
     {
         path: 'addCar',
         component: CarCreateComponent
-    }
+    }/*,
+    {
+        path: 'editUser',
+        component: UserEditComponent
+    }*/
 
 ];
 

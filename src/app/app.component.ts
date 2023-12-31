@@ -6,12 +6,13 @@ import { CarComponent } from '../car/car.component';
 import { Car } from '../car/car.model';
 import { CarDetailsComponent } from '../car/car-details/car-details.component';
 import { AppRoutingModule } from './app.routes';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, MainComponent, CarComponent, CarDetailsComponent,
-    AppRoutingModule],
+    AppRoutingModule, NzIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

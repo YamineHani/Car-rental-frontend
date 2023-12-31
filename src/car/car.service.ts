@@ -84,4 +84,12 @@ export class CarService {
   public getCarsByCapacity(capacity: number): Observable<Car[]>{
     return this.http.get<Car[]>(`${this.apiServerUrl}car/find/capacity/${capacity}`);
   }
+
+  public getCarById(plateId: number): Observable<Car>{
+    return this.http.get<Car>(`${this.apiServerUrl}car/find/plate/${plateId}`);
+  }
+
+  public getCarsByOffice(officeId: number): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/office/${officeId}`);
+  }
 }

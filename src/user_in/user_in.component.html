@@ -28,7 +28,16 @@
                         </ul>
                     </li>
                     <li nz-submenu nzTitle="RATE">
-                        <nz-slider nz-menu-item (ngModel)="rate" (nzOnAfterChange)="selectedFind = 'rate';findCarsBy(rate)"></nz-slider>
+                        <form nz-form [formGroup]="rateForm" (ngSubmit)="selectedFind = 'rate';filterRates()">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-slider (ngModel)="rate"></nz-slider>
+                                </nz-form-control>
+                                <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                                    <button nz-button><i nz-icon nzType="search"></i></button>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </form>
                     </li>
                     <li nz-submenu nzTitle="TRANSMISSION TYPE">
                         <ul>
@@ -50,11 +59,16 @@
                             <li *ngFor="let color of colors" nz-menu-item (click)="selectedFind = 'color';findCarsBy(color)">{{ color | uppercase }}</li>
                         </ul>
                     </li>
-                    <li nz-submenu nzTitle="CAPACITY"></li>
+                    <li nz-submenu nzTitle="CAPACITY">
+                        
+                        <button nz-button (click)="selectedFind = 'capacity';(rate)"><i nz-icon nzType="search"></i></button>
+                    </li>
                 </ul>
             </nz-dropdown-menu>
-            <button (click) = "findReservations()" *nzSpaceItem nz-button>Find Reservations</button>
-            <button (click)="editUser()" *nzSpaceItem nz-button>{{user.firstName}}<i nz-icon nzType="down"></i></button>
+            <button (click) = "findReservations()" *nzSpaceItem nz-button>Show Reservations</button>
+            <button (click)="editUser()" *nzSpaceItem nz-button nz-dropdown [nzDropdownMenu]="userMenu">{{user.firstName}}<i nz-icon nzType="user"></i></button>
+            <nz-dropdown-menu #userMenu="nzDropdownMenu">
+            </nz-dropdown-menu>
         </nz-space>
     </nz-page-header-extra>
     <nz-page-header-content>

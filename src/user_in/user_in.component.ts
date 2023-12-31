@@ -16,6 +16,8 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NzFormModule } from "ng-zorro-antd/form";
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 @Component({
   selector: 'app-user',
@@ -23,25 +25,12 @@ import { NzFormModule } from "ng-zorro-antd/form";
   styleUrl: './user_in.component.css',
   standalone: true,
   imports: [CommonModule, RouterOutlet, NzGridModule, CarComponent, NzPageHeaderModule, NzFormModule, NzButtonModule, ReactiveFormsModule,
-    NzDescriptionsItemComponent, NzSpaceComponent, NzButtonComponent, NzSpaceItemDirective, NzDropDownModule, NzInputModule],
+    NzDescriptionsItemComponent, NzSpaceComponent, NzButtonComponent, NzSpaceItemDirective, NzDropDownModule, NzInputModule, NzIconModule, NzSliderModule],
   providers: [CarService, UserService]//, ReservationService]
 })
 export class UserInComponent {
 
-  /*attributeList = [
-    {label: 'All', value: 'all'},
-    {label: 'Plate ID', value: 'id'},
-    {label: 'Brand', value: 'brand'},
-    {label: 'Type', value: 'type'},
-    {label: 'Year', value: 'year'},
-    {label: 'Status', value: 'status'},
-    {label: 'Rate', value: 'rate'},
-    {label: 'Transmission Type', value: 'transmission'},
-    {label: 'Fuel Type', value: 'fuel'},
-    {label: 'Body Style', value: 'body'},
-    {label: 'Color', value: 'color'},
-    {label: 'Capacity', value: 'capacity'}
-  ];*/
+  rateForm: FormGroup<{rate: FormControl<number>}>;
   brands: string[];
   types: string[];
   years: string[];
@@ -61,6 +50,7 @@ export class UserInComponent {
 
   constructor(private fb: NonNullableFormBuilder, private carService: CarService, private userService: UserService/*, private reservationService: ReservationService*/
     ,private router: Router) {
+      this.rateForm = this.fb.group({rate: [1]});
       }
 
   ngOnInit(): void {
@@ -108,7 +98,7 @@ export class UserInComponent {
         const startYear = 1990; // Adjust as needed
         this.years = Array.from({ length: currentYear - startYear + 1 },
             (_, index) => (startYear + index).toString()).reverse();
-    document.getElementById("rateRange")?.setAttribute("max", String(this.maxRate));
+    this.maxRate = Number(this.carService.getMaxRate());
   }
 
   private buildCarRows(response: Car[]) {
@@ -131,6 +121,11 @@ export class UserInComponent {
 
   findReservations(): void{
     //this.reservationService.getReservationsByUser(this.user.id);
+  }
+
+  filterRates(): void{
+    this.rate = Number(this.rateForm.value.rate);
+    this.findCarsBy(this.rate);
   }
 
   findCarsBy(value: string | number): void{
@@ -293,9 +288,8 @@ export class UserInComponent {
           });
           break;
           case 'rate':
-            //const rate: number = Number(this.rateForm.value.rate);
             this.selectedFind = this.selectedFind + ": " + this.rate;
-            this.carService.getCarsBellowRate(this.rate).pipe().subscribe({
+            this.carService.getCarsBellowRate(Number(value)).pipe().subscribe({
               next: (response: Car[]) => {
                 if (response.length > 0) {
                   for (let j = 0; j < this.tempCarRows.length; j++)
