@@ -5,4 +5,5 @@ export interface UserModel {
     lastName: string | undefined;
     email: string | undefined;
     password: string | undefined;
+    userRole?: string | undefined;
 }

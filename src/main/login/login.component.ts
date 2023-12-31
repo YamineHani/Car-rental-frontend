@@ -8,6 +8,7 @@ import { UserService } from "../user/user.service";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { UserModel } from "../user/user.model";
 import { Router } from "@angular/router";
+import { Admin, Client, Office, Visibility } from "../../roles/roles.model";
 
 @Component({
     selector: 'app-login',
@@ -26,6 +27,8 @@ export class LoginComponent {
         password: ['', [Validators.required]]
     });
 
+    visibility: Visibility;
+
     constructor(private fb: NonNullableFormBuilder, private userService: UserService,
         private modal: NzModalService, private router: Router) { }
 
@@ -39,7 +42,7 @@ export class LoginComponent {
         this.userService.login(loginRequest).pipe().subscribe({
             next: (response: UserModel) => {
                 this.userService.setUser(response);
-                this.router.navigateByUrl('/admin');
+                this.router.navigateByUrl('/car-rental');
             },
             error: (error) => this.error(error.error)
         });

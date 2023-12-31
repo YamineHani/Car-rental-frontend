@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { LoginRequest } from "../login/login-request.model";
 import { environment } from "../../enviroment/enviroment";
 import { isPlatformBrowser } from "@angular/common";
+import { Admin, Client, Office, Visibility } from "../../roles/roles.model";
 
 @Injectable({
     providedIn: 'root'
@@ -43,5 +44,19 @@ export class UserService {
             return user;
         }
         return null;   
+    }
+
+    public getVisibility(): Visibility | undefined {
+        const user: UserModel | null = this.getUser();
+        let visibility: Visibility;
+        if (!user) return undefined;
+        if (user.userRole === 'ADMIN') {
+            visibility = new Admin();
+        } else if (user.userRole === 'OFFICE') {
+            visibility = new Office();
+        } else {
+            visibility = new Client();
+        }
+        return visibility;
     }
 }

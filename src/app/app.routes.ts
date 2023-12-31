@@ -14,7 +14,7 @@ export const routes: Routes = [
         component: MainComponent
     },
     {
-        path: 'admin',
+        path: 'car-rental',
         component: AdminComponent
     } ,
     {

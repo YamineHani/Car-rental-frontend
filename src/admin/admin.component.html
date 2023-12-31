@@ -1,10 +1,14 @@
 <nz-page-header class="site-page-header">
-    <nz-page-header-title>Car Rental Admin</nz-page-header-title>
+    <nz-page-header-title>{{title}}</nz-page-header-title>
     <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
     <nz-page-header-extra>
         <nz-space>
-            <button (click) = "addCar()" *nzSpaceItem nz-button>Add Car</button>
-            <button (click) = "addOffice()" *nzSpaceItem nz-button>Add Office</button>
+            <ng-container *ngIf="visibility?.addCar()">
+                <button (click) = "addCar()" *nzSpaceItem nz-button>Add Car</button>
+            </ng-container>
+            <ng-container *ngIf="visibility?.addOffice()">
+                <button (click) = "addOffice()" *nzSpaceItem nz-button>Add Office</button>
+            </ng-container>
         </nz-space>
     </nz-page-header-extra>
     <nz-page-header-content>

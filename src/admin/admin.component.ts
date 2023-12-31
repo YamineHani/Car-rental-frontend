@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Router, RouterOutlet } from "@angular/router";
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -11,6 +11,7 @@ import { Car } from "../car/car.model";
 import { CarComponent } from "../car/car.component";
 import { UserService } from "../main/user/user.service";
 import { UserModel } from "../main/user/user.model";
+import { Visibility } from "../roles/roles.model";
 
 @Component({
   selector: 'app-admin',
@@ -26,14 +27,31 @@ export class AdminComponent {
   carRows: Car[][] = [];
   user: UserModel | null;
   subtitle: string;
+  visibility: Visibility | undefined;
+  title: string;
 
   constructor(private carService: CarService, private userService: UserService
-    ,private router: Router) {}
+    ,private router: Router) {
+      this.visibility = this.userService.getVisibility();
+      this.title = 'Car Rental ' + this.visibility?.getType().toLowerCase();
+    }
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
     if(this.user != null)
     this.subtitle = this.user.firstName + " " + this.user.lastName;
+    if (this.visibility?.getType() === 'OFFICE') {
+      this.getOfficeCars();
+    } else {
+      this.getAllCars();
+    }
+  }
+
+  private getOfficeCars() {
+
+  }
+
+  private getAllCars() {
     this.carService.getCars().pipe().subscribe({
       next: (response: Car[] | null) => {
         if (response) {

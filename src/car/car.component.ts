@@ -7,6 +7,8 @@ import { NzAvatarComponent } from 'ng-zorro-antd/avatar'
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
 import { Router } from "@angular/router";
+import { UserService } from "../main/user/user.service";
+import { Visibility } from "../roles/roles.model";
 
 @Component({
   selector: 'app-car',
@@ -15,15 +17,17 @@ import { Router } from "@angular/router";
   standalone: true,
   imports: [CommonModule, NzCardComponent, NzAvatarComponent, NzCardMetaComponent,
     NzIconModule, NzDescriptionsModule],
-  providers: [CarService]
+  providers: [CarService, UserService]
 })
 export class CarComponent {
   
   @Input({ required: true }) car: Car;
   description: string = "";
+  visibility: Visibility | undefined;
   
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private userService: UserService) { 
+    this.visibility = this.userService.getVisibility();
   }
 
   ngOnInit(): void {
