@@ -1,0 +1,73 @@
+<nz-page-header class="site-page-header">
+    <nz-page-header-title>Car Rental Client</nz-page-header-title>
+    <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
+    <nz-page-header-extra>
+        <nz-space>
+            <button nz-button nzSpaceItem (click)="selectedFind = 'find';findCarsBy(0)" *ngIf="selectedFind !== 'find'">RESET</button>
+            <button nz-button nz-dropdown *nzSpaceItem [nzDropdownMenu]="findMenu">{{selectedFind | uppercase}}<i nz-icon nzType="down"></i></button>
+            <nz-dropdown-menu #findMenu="nzDropdownMenu">
+                <ul nz-menu>
+                    <li nz-submenu nzTitle="BRAND">
+                        <ul>
+                            <li *ngFor="let brand of brands" nz-menu-item (click)="selectedFind = 'brand';findCarsBy(brand)">{{ brand | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="TYPE">
+                        <ul>
+                            <li *ngFor="let type of types" nz-menu-item (click)="selectedFind = 'type';findCarsBy(type)">{{ type | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="YEAR">
+                        <ul style="max-height: 200px;overflow-y: auto;">
+                            <li *ngFor="let year of years" nz-menu-item (click)="selectedFind = 'year';findCarsBy(year)">{{ year | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="STATUS">
+                        <ul>
+                            <li *ngFor="let status of statuses" nz-menu-item (click)="selectedFind = 'status';findCarsBy(status)">{{ status | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="RATE">
+                        <nz-slider nz-menu-item (ngModel)="rate" (nzOnAfterChange)="selectedFind = 'rate';findCarsBy(rate)"></nz-slider>
+                    </li>
+                    <li nz-submenu nzTitle="TRANSMISSION TYPE">
+                        <ul>
+                            <li *ngFor="let transmission of transmissions" nz-menu-item (click)="selectedFind = 'transmission';findCarsBy(transmission)">{{ transmission | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="FUEL TYPE">
+                        <ul>
+                            <li *ngFor="let fuel of fuels" nz-menu-item (click)="selectedFind = 'fuel';findCarsBy(fuel)">{{ fuel | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="BODY STYLE">
+                        <ul>
+                            <li *ngFor="let body of bodies" nz-menu-item (click)="selectedFind = 'body';findCarsBy(body)">{{ body | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="COLOR">
+                        <ul>
+                            <li *ngFor="let color of colors" nz-menu-item (click)="selectedFind = 'color';findCarsBy(color)">{{ color | uppercase }}</li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="CAPACITY"></li>
+                </ul>
+            </nz-dropdown-menu>
+            <button (click) = "findReservations()" *nzSpaceItem nz-button>Find Reservations</button>
+            <button (click)="editUser()" *nzSpaceItem nz-button>{{user.firstName}}<i nz-icon nzType="down"></i></button>
+        </nz-space>
+    </nz-page-header-extra>
+    <nz-page-header-content>
+    </nz-page-header-content>
+</nz-page-header>
+<div class="gutter-example">
+    <ng-container *ngFor="let row of tempCarRows">
+        <div nz-row [nzGutter]="[16, 16]">
+            <div nz-col class="gutter-row" [nzSpan]="24 / 4" *ngFor="let car of row">
+                <div class="grid-config">
+                    <app-car [car]="car"></app-car>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

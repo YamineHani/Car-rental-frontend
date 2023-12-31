@@ -50,10 +50,12 @@ export class RegisterComponent {
 
     submitForm(): void {
         const userModel: UserModel = {
+            id: 0,
             firstName: this.validateForm.value.firstName,
             lastName: this.validateForm.value.lastName,
             email: this.validateForm.value.email,
-            password: this.validateForm.value.password
+            password: this.validateForm.value.password,
+            userRole: 'USER'
         };
         this.userService.signup(userModel).pipe().subscribe({
             next: (response) => this.success(),

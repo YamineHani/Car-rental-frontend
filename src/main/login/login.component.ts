@@ -39,7 +39,16 @@ export class LoginComponent {
         this.userService.login(loginRequest).pipe().subscribe({
             next: (response: UserModel) => {
                 this.userService.setUser(response);
-                this.router.navigateByUrl('/admin');
+                response = this.userService.getUser();
+                alert(response.userRole === 'USER');
+                if(response.userRole == 'USER')
+                {
+                    this.router.navigateByUrl('/user');
+                }
+                else
+                {
+                    this.router.navigateByUrl('/admin');
+                }
             },
             error: (error) => this.error(error.error)
         });
