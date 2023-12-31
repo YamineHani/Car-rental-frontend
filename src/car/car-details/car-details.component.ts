@@ -20,6 +20,8 @@ export class CarDetailsComponent {
     }
 
     ngOnInit(): void {
-        this.car = history.state.car;
+        if (typeof history !== 'undefined') {
+            this.car = history.state.car;
+        }
     }
 }

@@ -21,8 +21,8 @@ export class CarService {
     return this.http.post(`${this.apiServerUrl}car/add`,car, {responseType: 'text'});
   }
 
-  public updateCar(car: Car): Observable<Car[]>{
-    return this.http.put<Car[]>(`${this.apiServerUrl}car/update`,car);
+  public updateCar(car: Car): Observable<String>{
+    return this.http.put(`${this.apiServerUrl}car/update`,car, {responseType: 'text'});
   }
 
   public deleteCar(carPlateId: number): Observable<void>{

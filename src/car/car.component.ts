@@ -35,6 +35,6 @@ export class CarComponent {
   }
 
   updateDetails(): void{
-    //
+    this.router.navigateByUrl('editCar', {state:{car: this.car}});
   }
 }

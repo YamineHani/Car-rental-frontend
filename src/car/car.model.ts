@@ -13,4 +13,5 @@ export interface Car {
     capacity: number;
     imageUrl: string;
     office: { officeId: number };
+    [key: string]: any; // Index signature allowing any string property
 }
