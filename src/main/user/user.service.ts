@@ -27,6 +27,14 @@ export class UserService {
         return this.http.post(`${this.apiServerUrl}/login`, loginRequest, {responseType: 'text'});
     }
 
+    public getUsersByAttribute(attributeName: string, attributeValue: string): Observable<UserModel[]> {
+        return this.http.get<UserModel[]>(`${this.apiServerUrl}/find/${attributeName}/${attributeValue}`);
+    }
+
+    public getAllUsers(): Observable<UserModel[]> {
+        return this.http.get<UserModel[]>(`${this.apiServerUrl}/find/all`);
+    }
+
     public setUser(user: UserModel) {
         if(this.isBrowser){
             sessionStorage.setItem("user", JSON.stringify(user));
