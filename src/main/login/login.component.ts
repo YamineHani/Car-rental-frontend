@@ -8,7 +8,7 @@ import { UserService } from "../user/user.service";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { UserModel } from "../user/user.model";
 import { Router } from "@angular/router";
-import { Admin, Client, Office, Visibility } from "../../roles/roles.model";
+import { Admin, Client, Office, Visibility } from "../../models/roles.model";
 
 @Component({
     selector: 'app-login',

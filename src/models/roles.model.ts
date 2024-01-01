@@ -7,6 +7,7 @@ export interface Visibility {
     editCar(): boolean;
     reserveCar(): boolean;
     getType(): string;
+    getStats(): boolean;
 }
 
 export class Admin implements Visibility {
@@ -37,6 +38,10 @@ export class Admin implements Visibility {
     
     getType(): string {
         return 'ADMIN';
+    }
+
+    getStats(): boolean {
+        return true;
     }
 }
 
@@ -69,6 +74,10 @@ export class Office implements Visibility {
     getType(): string {
         return 'OFFICE';
     }
+
+    getStats(): boolean {
+        return false;
+    }
 }
 
 export class Client implements Visibility {
@@ -99,5 +108,9 @@ export class Client implements Visibility {
     
     getType(): string {
         return 'CLIENT';
+    }
+
+    getStats(): boolean {
+        return false;
     }
 }

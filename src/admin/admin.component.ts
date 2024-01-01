@@ -11,7 +11,7 @@ import { Car } from "../car/car.model";
 import { CarComponent } from "../car/car.component";
 import { UserService } from "../main/user/user.service";
 import { UserModel } from "../main/user/user.model";
-import { Visibility } from "../roles/roles.model";
+import { Visibility } from "../models/roles.model";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
 import {
   FormControl,
@@ -223,4 +223,7 @@ export class AdminComponent {
     }
   }
 
+  showStats() {
+    this.router.navigateByUrl('reservation-stats');
+  }
 }

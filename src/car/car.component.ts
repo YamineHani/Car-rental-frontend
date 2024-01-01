@@ -8,7 +8,7 @@ import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzDescriptionsModule } from "ng-zorro-antd/descriptions";
 import { Router } from "@angular/router";
 import { UserService } from "../main/user/user.service";
-import { Visibility } from "../roles/roles.model";
+import { Visibility } from "../models/roles.model";
 
 @Component({
   selector: 'app-car',

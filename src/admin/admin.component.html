@@ -31,6 +31,9 @@
             <ng-container *ngIf="visibility?.addOffice()">
                 <button (click)="addOffice()" *nzSpaceItem nz-button>Add Office</button>
             </ng-container>
+            <ng-container *ngIf="visibility?.getStats()">
+                <button (click)="showStats()" *nzSpaceItem nz-button>Statistics</button>
+            </ng-container>
         </nz-space>
     </nz-page-header-extra>
     <nz-page-header-content>

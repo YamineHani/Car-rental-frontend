@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 import { LoginRequest } from "../login/login-request.model";
 import { environment } from "../../enviroment/enviroment";
 import { isPlatformBrowser } from "@angular/common";
-import { Admin, Client, Office, Visibility } from "../../roles/roles.model";
+import { Admin, Client, Office, Visibility } from "../../models/roles.model";
 
 @Injectable({
     providedIn: 'root'
