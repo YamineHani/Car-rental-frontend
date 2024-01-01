@@ -3,6 +3,27 @@
     <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
     <nz-page-header-extra>
         <nz-space>
+            <ng-container *ngIf="reset">
+                <button (click) = "resetSearch()" *nzSpaceItem nz-button>Reset</button>
+            </ng-container>
+            <ng-container *ngIf="search">
+                <form nz-form [formGroup]="searchForm" (ngSubmit)="findCars()" *nzSpaceItem>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <input nz-input formControlName="attributeValue" placeholder="Enter {{attributeName|uppercase}}"/>
+                            <button nz-button [disabled]="!searchForm.valid"><i nz-icon nzType="search"></i></button>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </ng-container>
+            <ng-container *ngIf="visibility?.findCar()">
+                <button *nzSpaceItem nz-button nz-dropdown [nzDropdownMenu]="findMenu">{{attributeName === '' ? 'Search' : attributeName|uppercase}}<i nz-icon nzType="down"></i></button>
+                <nz-dropdown-menu #findMenu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item *ngFor="let attribute of attributes" (click)="showSearchBar(attribute)">{{attribute | uppercase}}</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </ng-container>
             <ng-container *ngIf="visibility?.addCar()">
                 <button (click) = "addCar()" *nzSpaceItem nz-button>Add Car</button>
             </ng-container>

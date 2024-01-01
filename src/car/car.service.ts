@@ -28,4 +28,24 @@ export class CarService {
   public deleteCar(carPlateId: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}car/delete/${carPlateId}`);
   }
+
+  public getOfficeCars(officeEmail: string): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/office/${officeEmail}`);
+  }
+
+  public getActiveCars(): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/status/ACTIVE`);
+  }
+
+  public getCarsByAttribute(attributeName: string, attributeValue: string): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/${attributeName}/${attributeValue}`);
+  }
+
+  public getActiveCarsByAttribute(attributeName: string, attributeValue: string): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/active/${attributeName}/${attributeValue}`);
+  }
+
+  public getOfficeCarsByAttribute(officeEmail: string, attributeName: string, attributeValue: string): Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.apiServerUrl}car/find/inOffice/${officeEmail}/${attributeName}/${attributeValue}`);
+  }
 }
