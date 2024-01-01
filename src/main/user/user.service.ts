@@ -67,4 +67,8 @@ export class UserService {
         }
         return visibility;
     }
+
+    public clearUser() {
+        sessionStorage.removeItem("user");
+    }
 }

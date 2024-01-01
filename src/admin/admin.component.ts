@@ -234,4 +234,9 @@ export class AdminComponent {
   showPayments() {
     this.router.navigateByUrl('payments');
   }
+
+  signOut() {
+    this.userService.clearUser();
+    this.router.navigateByUrl('');
+  }
 }
