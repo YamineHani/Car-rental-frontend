@@ -24,7 +24,7 @@
                 <button *nzSpaceItem nz-button nz-dropdown [nzDropdownMenu]="findMenu">{{attributeName === '' ? 'Search Car' : attributeName|uppercase}}<i nz-icon nzType="down"></i></button>
                 <nz-dropdown-menu #findMenu="nzDropdownMenu">
                     <ul nz-menu>
-                        <li nz-menu-item *ngFor="let attribute of attributes" (click)="showSearchBar(attribute)">{{attribute | uppercase}}</li>
+                        <li nz-menu-item *ngFor="let attribute of attributes" (click)="showSearchBar(attribute)" [nzDisabled]="attribute === 'status' && visibility?.getType() === 'CLIENT'">{{attribute | uppercase}}</li>
                     </ul>
                 </nz-dropdown-menu>
             </ng-container>
