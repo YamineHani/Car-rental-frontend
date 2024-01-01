@@ -193,7 +193,7 @@ export class AdminComponent {
     this.router.navigateByUrl('addOffice');
   }
 
-  findUser(): void{
+  findUsers(): void{
     this.router.navigateByUrl('findUser');
   }
 

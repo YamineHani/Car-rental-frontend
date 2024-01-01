@@ -4,8 +4,8 @@
     <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
     <nz-page-header-extra>
         <nz-space>
-            <ng-container *ngIf="visibility?.addCar()">
-                <button (click)="findUser()" *nzSpaceItem nz-button>Search User</button>
+            <ng-container *ngIf="visibility?.findUser()">
+                <button (click)="findUsers()" *nzSpaceItem nz-button>Search User</button>
             </ng-container>
             <ng-container *ngIf="reset">
                 <button (click) = "resetSearch()" *nzSpaceItem nz-button>Reset</button>
