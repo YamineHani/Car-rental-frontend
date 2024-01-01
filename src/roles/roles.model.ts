@@ -3,6 +3,7 @@ export interface Visibility {
     addCar(): boolean;
     addOffice(): boolean;
     carDetails(): boolean;
+    findCar(): boolean;
     editCar(): boolean;
     reserveCar(): boolean;
     getType(): string;
@@ -15,6 +16,10 @@ export class Admin implements Visibility {
     }
 
     addOffice(): boolean {
+        return true;
+    }
+
+    findCar(): boolean {
         return true;
     }
 
@@ -45,6 +50,10 @@ export class Office implements Visibility {
         return false;
     }
 
+    findCar(): boolean {
+        return true;
+    }
+
     carDetails(): boolean {
         return true;
     }
@@ -70,6 +79,10 @@ export class Client implements Visibility {
 
     addOffice(): boolean {
         return false;
+    }
+
+    findCar(): boolean {
+        return true;
     }
 
     carDetails(): boolean {
