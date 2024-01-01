@@ -37,6 +37,9 @@
             <ng-container *ngIf="visibility?.getStats()">
                 <button (click)="showStats()" *nzSpaceItem nz-button>Statistics</button>
             </ng-container>
+            <ng-container *ngIf="visibility?.showPayments()">
+                <button (click)="showPayments()" *nzSpaceItem nz-button>Payments</button>
+            </ng-container>
         </nz-space>
     </nz-page-header-extra>
     <nz-page-header-content>

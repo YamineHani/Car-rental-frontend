@@ -25,5 +25,8 @@ export class CarReservationService {
   public searchReservations(reservationRequest: ReservationRequest): Observable<any[]>{ 
     return this.http.post<any[]>(`${this.apiServerUrl}reservations/find`, reservationRequest);
   }
-  
+
+  public getAllPayments(reservationRequest: ReservationRequest): Observable<any[]>{ 
+    return this.http.post<any[]>(`${this.apiServerUrl}reservations/payments`, reservationRequest);
+  }
 }

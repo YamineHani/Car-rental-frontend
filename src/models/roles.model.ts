@@ -9,6 +9,7 @@ export interface Visibility {
     findUser(): boolean;
     getType(): string;
     getStats(): boolean;
+    showPayments(): boolean;
 }
 
 export class Admin implements Visibility {
@@ -46,6 +47,10 @@ export class Admin implements Visibility {
     }
 
     getStats(): boolean {
+        return true;
+    }
+
+    showPayments() {
         return true;
     }
 }
@@ -87,6 +92,10 @@ export class Office implements Visibility {
     getStats(): boolean {
         return false;
     }
+
+    showPayments() {
+        return false;
+    }
 }
 
 export class Client implements Visibility {
@@ -124,6 +133,10 @@ export class Client implements Visibility {
     }
 
     getStats(): boolean {
+        return false;
+    }
+
+    showPayments() {
         return false;
     }
 }

@@ -9,6 +9,7 @@ import { CarEditComponent } from '../car/car-edit/car-edit.component';
 import { CarReservationComponent } from '../car/car-reserve/car-reserve.component';
 import { UserComponent } from '../main/user/user.component';
 import { ReservationComponent } from '../reservation/reservation.components';
+import { PaymentComponent } from '../payment/payment.component';
 
 
 export const routes: Routes = [
@@ -47,8 +48,11 @@ export const routes: Routes = [
     {
         path: 'reservation-stats',
         component: ReservationComponent
+    },
+    {
+        path: 'payments',
+        component: PaymentComponent
     }
-
 ];
 
 @NgModule({

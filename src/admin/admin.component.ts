@@ -230,4 +230,8 @@ export class AdminComponent {
   showStats() {
     this.router.navigateByUrl('reservation-stats');
   }
+
+  showPayments() {
+    this.router.navigateByUrl('payments');
+  }
 }
