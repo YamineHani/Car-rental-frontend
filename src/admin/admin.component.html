@@ -4,6 +4,9 @@
     <nz-page-header-subtitle>{{subtitle}}</nz-page-header-subtitle>
     <nz-page-header-extra>
         <nz-space>
+            <ng-container *ngIf="visibility?.addCar()">
+                <button (click)="findUser()" *nzSpaceItem nz-button>Search User</button>
+            </ng-container>
             <ng-container *ngIf="reset">
                 <button (click) = "resetSearch()" *nzSpaceItem nz-button>Reset</button>
             </ng-container>
@@ -18,7 +21,7 @@
                 </form>
             </ng-container>
             <ng-container *ngIf="visibility?.findCar()">
-                <button *nzSpaceItem nz-button nz-dropdown [nzDropdownMenu]="findMenu">{{attributeName === '' ? 'Search' : attributeName|uppercase}}<i nz-icon nzType="down"></i></button>
+                <button *nzSpaceItem nz-button nz-dropdown [nzDropdownMenu]="findMenu">{{attributeName === '' ? 'Search Car' : attributeName|uppercase}}<i nz-icon nzType="down"></i></button>
                 <nz-dropdown-menu #findMenu="nzDropdownMenu">
                     <ul nz-menu>
                         <li nz-menu-item *ngFor="let attribute of attributes" (click)="showSearchBar(attribute)">{{attribute | uppercase}}</li>

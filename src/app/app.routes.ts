@@ -7,6 +7,7 @@ import { OfficeCreateComponent } from '../office/office-create/office-create.com
 import { CarAddComponent } from '../car/car-add/car-add.component';
 import { CarEditComponent } from '../car/car-edit/car-edit.component';
 import { CarReservationComponent } from '../car/car-reserve/car-reserve.component';
+import { UserComponent } from '../main/user/user.component';
 
 
 export const routes: Routes = [
@@ -37,6 +38,10 @@ export const routes: Routes = [
     {
         path: 'reserveCar',
         component: CarReservationComponent
+    },
+    {
+        path: 'findUser',
+        component: UserComponent
     }
 
 ];

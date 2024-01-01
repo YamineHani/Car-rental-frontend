@@ -50,7 +50,7 @@ export class AdminComponent {
     ,private router: Router) {
       this.visibility = this.userService.getVisibility();
       this.title = 'Car Rental ' + this.visibility?.getType().toLowerCase();
-      this.searchForm = this.fb.group({attributeValue: ['', [Validators.required]]})
+      this.searchForm = this.fb.group({attributeValue: ['', [Validators.required]]});
     }
 
   ngOnInit(): void {
@@ -191,6 +191,10 @@ export class AdminComponent {
   addOffice(): void{ 
     // TODO ADD OFFICE 
     this.router.navigateByUrl('addOffice');
+  }
+
+  findUser(): void{
+    this.router.navigateByUrl('findUser');
   }
 
   findCars(): void{
