@@ -41,4 +41,8 @@ export class CarComponent {
   updateDetails(): void{
     this.router.navigateByUrl('editCar', {state:{car: this.car}});
   }
+
+  carReservation(): void{
+    this.router.navigateByUrl('reserveCar', {state:{car: this.car}});
+  }
 }

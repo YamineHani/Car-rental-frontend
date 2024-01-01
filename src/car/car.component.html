@@ -9,7 +9,7 @@
 </ng-template>
 <ng-template #actionSetting>
   <ng-container *ngIf="visibility?.reserveCar()">
-    <span nz-icon nzType="plus"></span>
+    <span nz-icon nzType="plus" (click)="carReservation()"></span>
   </ng-container>
 </ng-template>
 <ng-template #actionEdit>

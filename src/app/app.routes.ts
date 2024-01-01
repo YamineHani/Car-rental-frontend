@@ -6,6 +6,7 @@ import { CarDetailsComponent } from '../car/car-details/car-details.component';
 import { OfficeCreateComponent } from '../office/office-create/office-create.component';
 import { CarAddComponent } from '../car/car-add/car-add.component';
 import { CarEditComponent } from '../car/car-edit/car-edit.component';
+import { CarReservationComponent } from '../car/car-reserve/car-reserve.component';
 
 
 export const routes: Routes = [
@@ -32,6 +33,10 @@ export const routes: Routes = [
     {
         path: 'editCar',
         component: CarEditComponent
+    },
+    {
+        path: 'reserveCar',
+        component: CarReservationComponent
     }
 
 ];
