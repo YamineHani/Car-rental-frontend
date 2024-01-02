@@ -11,6 +11,7 @@ export interface Visibility {
     getStats(): boolean;
     showPayments(): boolean;
     showLogs(): boolean;
+    updateCarOffice(): boolean;
 }
 
 export class Admin implements Visibility {
@@ -56,6 +57,10 @@ export class Admin implements Visibility {
     }
 
     showLogs() {
+        return true;
+    }
+
+    updateCarOffice() {
         return true;
     }
 }
@@ -105,6 +110,10 @@ export class Office implements Visibility {
     showLogs() {
         return false;
     }
+
+    updateCarOffice() {
+        return false;
+    }
 }
 
 export class Client implements Visibility {
@@ -150,6 +159,10 @@ export class Client implements Visibility {
     }
 
     showLogs() {
+        return false;
+    }
+
+    updateCarOffice() {
         return false;
     }
 }

@@ -10,6 +10,10 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { CarService } from "../car.service";
 import { NzModalService } from "ng-zorro-antd/modal";
 import { NzDropDownModule } from "ng-zorro-antd/dropdown";
+import { OfficeService } from "../../office/office.service";
+import { off } from "process";
+import { Visibility } from "../../models/roles.model";
+import { UserService } from "../../main/user/user.service";
 
 
 @Component({
@@ -19,16 +23,20 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown";
     standalone: true,
     imports: [CommonModule, NzDescriptionsModule, NzBadgeModule, NzPopoverModule,
         FormsModule, NzPopconfirmModule, NzDropDownModule],
-    providers: [CarService, NzModalService]
+    providers: [CarService, NzModalService, OfficeService, UserService]
 })
 export class CarEditComponent {
 
     car: Car;
     years: string[] = [];
     rateInput: HTMLInputElement;
+    officeIds: string[] = [];
+    visibility: Visibility | undefined;
 
     constructor(private nzMessageService: NzMessageService, private carService: CarService
-        , private modal: NzModalService) {
+        , private modal: NzModalService, private officeService: OfficeService,
+         private userService: UserService) {
+            this.visibility = this.userService.getVisibility();
     }
 
     ngOnInit(): void {
@@ -36,6 +44,14 @@ export class CarEditComponent {
             this.car = history.state.car;
         }
         this.generateYearDropdown();
+        this.officeService.getAllOfficeIds().subscribe(
+            (ids) => {
+                this.officeIds = ids.map(String);
+            },
+            (error) => {
+                console.error('Error fetching office IDs', error);
+            }
+        );
     }
 
     isEditing: { [key: string]: boolean } = {};
@@ -83,10 +99,6 @@ export class CarEditComponent {
         });
     }
 
-    confirmDelete(): void {
-        this.nzMessageService.info('deleted');
-        //after delete go back to admin page
-    }
 
     private error(msg: string): void {
         this.modal.error({
@@ -120,6 +132,10 @@ export class CarEditComponent {
 
     setBodyStyle(style: string): void {
         this.car.bodyStyle = style;
+    }
+
+    setOffice(office: string): void {
+        this.car.office = {officeId: Number(office)};
     }
 
     private isFieldEmpty(field: string): boolean {

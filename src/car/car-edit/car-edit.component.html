@@ -90,7 +90,6 @@
                         }}</span>
                 </ng-container>
                 <ng-template #editStatus>
-                    <!-- <input nz-input [(ngModel)]="car.status" /> -->
                     <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuStatus">
                         {{car.status}} <i nz-icon nzType="down"></i>
                         <span nz-icon nzType="down"></span>
@@ -136,7 +135,7 @@
                     <a (click)="saveField('rate')">Save</a>
                 </ng-template>
             </nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Body style" [nzSpan]="2">
+            <nz-descriptions-item nzTitle="Body style">
                 <ng-container *ngIf="!isEditing['bodyStyle']; else editBodyStyle">
                     <span (click)="toggleEdit('bodyStyle')" [ngClass]="{'clickable': !isEditing['bodyStyle']}">{{
                         car.bodyStyle
@@ -162,6 +161,27 @@
                     <a (click)="saveField('bodyStyle')">Save</a>
                 </ng-template>
             </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Office" *ngIf="visibility?.updateCarOffice()">
+                <ng-container *ngIf="!isEditing['office']; else editOffice">
+                    <span (click)="toggleEdit('office')" [ngClass]="{'clickable': !isEditing['office']}">{{
+                        car.office.officeId
+                        }}</span>
+                </ng-container>
+                <ng-template #editOffice>
+                    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuOffice">
+                        {{ car.office.officeId}} <i nz-icon nzType="down"></i>
+                        <span nz-icon nzType="down"></span>
+                    </a>
+                    <nz-dropdown-menu #menuOffice="nzDropdownMenu">
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            <ul nz-menu nzSelectable>
+                                <li *ngFor="let officeId of officeIds" nz-menu-item (click)="setOffice(officeId)">{{ officeId }}</li>
+                            </ul>
+                        </div>
+                    </nz-dropdown-menu>
+                    <a (click)="saveField('office')">Save</a>
+                </ng-template>
+            </nz-descriptions-item>
             <nz-descriptions-item nzTitle="Image url" [nzSpan]="3">
                 <ng-container *ngIf="!isEditing['imageUrl']; else editImage">
                     <span (click)="toggleEdit('imageUrl')" [ngClass]="{'clickable': !isEditing['imageUrl']}">{{ car.imageUrl
@@ -181,10 +201,6 @@
                     Update
                 </a>
 
-                <a class="delete" nz-popconfirm nzPopconfirmTitle="Are you sure delete this car?"
-                    nzPopconfirmPlacement="bottom" (nzOnConfirm)="confirmDelete()" (nzOnCancel)="cancel()">
-                    Delete
-                </a>
             </div>
         </div>
     </ng-container>
