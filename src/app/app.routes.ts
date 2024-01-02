@@ -10,6 +10,7 @@ import { CarReservationComponent } from '../car/car-reserve/car-reserve.componen
 import { UserComponent } from '../main/user/user.component';
 import { ReservationComponent } from '../reservation/reservation.components';
 import { PaymentComponent } from '../payment/payment.component';
+import { StatusLogComponent } from '../status-log/status-log.component';
 
 
 export const routes: Routes = [
@@ -52,6 +53,10 @@ export const routes: Routes = [
     {
         path: 'payments',
         component: PaymentComponent
+    },
+    {
+        path: 'logs',
+        component: StatusLogComponent
     }
 ];
 

@@ -40,8 +40,8 @@
             <ng-container *ngIf="visibility?.showPayments()">
                 <button (click)="showPayments()" *nzSpaceItem nz-button>Payments</button>
             </ng-container>
-            <ng-container *ngIf="visibility?.showPayments()">
-                <button (click)="showPayments()" *nzSpaceItem nz-button>Payments</button>
+            <ng-container *ngIf="visibility?.showLogs()">
+                <button (click)="showLogs()" *nzSpaceItem nz-button>Status Logs</button>
             </ng-container>
             <ng-container>
                 <button (click)="signOut()" *nzSpaceItem nz-button>Sign out</button>

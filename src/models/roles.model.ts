@@ -10,6 +10,7 @@ export interface Visibility {
     getType(): string;
     getStats(): boolean;
     showPayments(): boolean;
+    showLogs(): boolean;
 }
 
 export class Admin implements Visibility {
@@ -51,6 +52,10 @@ export class Admin implements Visibility {
     }
 
     showPayments() {
+        return true;
+    }
+
+    showLogs() {
         return true;
     }
 }
@@ -96,6 +101,10 @@ export class Office implements Visibility {
     showPayments() {
         return false;
     }
+
+    showLogs() {
+        return false;
+    }
 }
 
 export class Client implements Visibility {
@@ -137,6 +146,10 @@ export class Client implements Visibility {
     }
 
     showPayments() {
+        return false;
+    }
+
+    showLogs() {
         return false;
     }
 }

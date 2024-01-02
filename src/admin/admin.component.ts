@@ -239,4 +239,8 @@ export class AdminComponent {
     this.userService.clearUser();
     this.router.navigateByUrl('');
   }
+
+  showLogs() {
+    this.router.navigateByUrl('logs');
+  }
 }
